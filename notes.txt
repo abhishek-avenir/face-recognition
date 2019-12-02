@@ -1,0 +1,63 @@
+1) Cascade Classifiers
+	- Haar Feature Selection
+	- Create Integral Image
+	- Adaboost Training
+	- Cascading Classifiers
+	Pros
+		Works almost real-time on CPU
+		Simple Architecture
+		Detects faces at different scales
+	Cons
+		The major drawback of this method is that it gives a lot of False predictions.
+		Doesn’t work on non-frontal images.
+		Doesn’t work under occlusion
+
+2) HoG in Dlib
+	Pros
+		Fastest method on CPU
+		Works very well for frontal and slightly non-frontal faces
+		Light-weight model as compared to the other three
+		Works under small occlusion
+	Cons
+		The major drawback is that it does not detect small faces as it is trained for minimum face size of 80×80.
+			Thus, you need to make sure that the face size should be more than that in your application.
+			You can however, train your own face detector for smaller sized faces.
+		The bounding box often excludes part of forehead and even part of chin sometimes.
+		Does not work very well under substantial occlusion
+		Does not work for side face and extreme non-frontal faces, like looking down or up.
+
+3) Convolutional Neural Network in Dlib
+	Uses a Maximum-Margin Object Detector ( MMOD ) with CNN based features
+	Pros
+		Works for different face orientations
+		Robust to occlusion
+		Works very fast on GPU
+		Very easy training process
+	Cons
+		Very slow on CPU
+		Does not detect small faces as it is trained for minimum face size of 80×80.
+			Thus, you need to make sure that the face size should be more than that in your application.
+			You can however, train your own face detector for smaller sized faces.
+		The bounding box is even smaller than the HoG detector.
+
+4) cvlib (Tensorflow dependent)
+	Underneath it is using OpenCV’s dnn module with a pre-trained caffemodel to detect faces.
+	Pros
+		Accurate out of all the above four methods
+		Runs at real-time on CPU
+		Works for different face orientations – up, down, left, right, side-face etc.
+		Works even under substantial occlusion
+		Detects faces across various scales ( detects big as well as tiny faces )
+
+5) MTCNN (Tensorflow dependent)
+	Pros
+		Accurate out of all
+		Works for different face orientations – up, down, left, right, side-face etc.
+		Works even under substantial occlusion
+		Detects faces across various scales ( detects big as well as tiny faces )
+	Cons
+		Slowest of all the above
+
+
+Accuracy: MTCNN > CVlib > Dlib-CNN > HoG > Cascade Classifiers
+Speed: HoG > Cascade > CVlib (OpenCV-DNN) > Dlib-CNN > MTCNN
