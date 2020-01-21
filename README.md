@@ -1,12 +1,6 @@
 
 # Create face_encodings for faces in `known_images`
-
-> python recognize_face.py -f "known_images/" -p
-> python recognize_face.py -f "known_images/" -p --use-large-model
-
-> python recognize_face.py -f "known_images/" -p --use-cvlib
-> python recognize_face.py -f "known_images/" -p --use-cvlib --use-large-model
-
+> python prepare_reference_encodings.py -i "known_images/" [-c] [-l] [-o encodings/dir/my_encodings.pkl]
 
 # To run the face recoginition
 
